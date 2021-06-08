@@ -13,14 +13,13 @@ public class App {
             
             System.out.println(doc.title());
             
-            Elements table = doc.select("table.cast_list");
-            // Elements tr = table.select("td.character");
-            
-            System.out.println(table);
+            Elements article = doc.select("div.article");
+            Elements table = article.select("table");
 
-            // for (Element cast : casts) {
-            //     System.out.println(cast);
-            // }
+            for (Element el : table) {
+                Elements casts = el.select("tr");
+                System.out.println(casts.text());
+            }    
         }
         catch (Exception err) {
             System.out.println("An error ocurred while running the program...");
