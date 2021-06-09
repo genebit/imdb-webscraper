@@ -7,12 +7,15 @@ import org.jsoup.select.Elements;
 
 public class Main {
     
-    private static String url = "https://www.imdb.com/title/tt0185937/?ref_=tt_sims_tti";
+    private static String url;
     private static String userAgent = "Mozilla/5.0";
 
     public static void main(String[] args) {
         try {
             System.out.println("Running...\n");
+            
+            Scanner input = new Scanner(System.in);
+            inputLink(input);
 
             Document doc = Jsoup.connect(url)
                 .userAgent(userAgent)
@@ -38,6 +41,13 @@ public class Main {
             System.out.println("An error ocurred while running the program...");
             System.out.println(err);
         }
+    }
+
+    private static void inputLink(Scanner input) {
+        System.out.print("Enter an imdb Movie Link: ");
+        url = input.nextLine();
+        input.close();
+        System.out.println();
     }
 
     private static void getProduction(Document doc) {
